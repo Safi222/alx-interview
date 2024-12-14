@@ -3,37 +3,37 @@
 
 
 def SieveOfEratosthenes(n):
-    """Find the prime numbers from number n down to zero"""
+    """Find the prime numbers up from 0 to n"""
     prime = [True for i in range(n+1)]
-    primes_list = [0 for i in range(n+1)]
-    pr = 2
-    prime_nums = 0
-    for pr in range(2, n + 1):
-        if (prime[pr]):
-            prime_nums += 1
-            for i in range(pr * pr, n+1, pr):
+    primes_array = [0 for i in range(n+1)]
+    p = 2
+    nums_prime = 0
+    for p in range(2, n + 1):
+        if (prime[p]):
+            nums_prime += 1
+            for i in range(p * p, n+1, p):
                 prime[i] = False
-            primes_list[pr] = prime_nums
-        return (primes_list)
+                primes_array[p] = nums_prime
+                return (primes_array)
 
 def isWinner(x, nums):
-    """choose the winner of the prime game either Maria or Ben"""
-    if not x or not numbers or x < 0:
+    """Determine the winner of the prime game"""
+    if not x or not nums or x < 0:
         return None
 
-    Maria_wins = 0
-    Ben_wins = 0
-    the_max = max(numbers[0:x])
-    primes_arr = SieveOfEratosthenes(the_max)
+    Maria_num_wins = 0
+    Ben_num_wins = 0
+    max_num = max(nums[0:x])
+    primes_arr = SieveOfEratosthenes(max_num)
 
     for i in range(x):
-        prime_nums = primes_arr[numbers[i]]
-        if (prime_nums % 2):
-            Maria_wins += 1
+        nums_prime = primes_arr[nums[i]]
+        if (nums_prime % 2):
+            Maria_num_wins += 1
         else:
-            Ben_wins += 1
+            Ben_num_wins += 1
 
-    if (Maria_wins > Ben_wins):
+    if (Maria_num_wins > Ben_num_wins):
         return 'Maria'
-    if (Ben_wins > Maria_wins):
+    if (Ben_num_wins > Maria_num_wins):
         return 'Ben'
